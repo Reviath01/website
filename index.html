@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Reviath</title>
+</head>
+<style>
+    body {
+        background-color: #414141;
+    }
+
+    .github-button {
+        width: 10%;
+        height: 5%;
+        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #d0d0d0;
+        border: 2px solid black;
+        border-radius: 20px;
+        color: black;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        text-align: center;
+        font-size: 24px;
+        position: absolute;
+        left: 25%;
+        top: 75%;
+        text-decoration: none;
+        display: table-cell;
+        vertical-align: middle;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .github-button:hover {
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 20px;
+        cursor: pointer;
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .gitlab-button {
+        width: 10%;
+        height: 5%;
+        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #d0d0d0;
+        border: 2px solid black;
+        border-radius: 20px;
+        color: black;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        text-align: center;
+        font-size: 24px;
+        position: absolute;
+        left: 65%;
+        top: 75%;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .gitlab-button:hover {
+        background-color: black;
+        color: white;
+        border: 2px solid white;
+        border-radius: 20px;
+        cursor: pointer;
+        text-align: center;
+        font-size: 24px;
+        text-decoration: none;
+    }
+
+    .about {
+        width: 80%;
+        height: 40%;
+        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
+        color: #808080;
+        transition-duration: 0.4s;
+        text-align: center;
+        font-size: 24px;
+        position: absolute;
+        left: 10%;
+        top: 10%;
+        text-decoration: none;
+    }
+
+    .sendmessage {
+        width: 50%;
+        height: 30%;
+        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
+        color: black;
+        border: 2px solid #000000;
+        transition-duration: 0.4s;
+        text-align: center;
+        font-size: 24px;
+        position: absolute;
+        left: 25%;
+        top: 40%;
+        text-decoration: none;
+    }
+
+    input[type=text]:focus {
+        border: 3px solid #555;
+    }
+
+    input[type=text] {
+        width: 200px;
+        height: 20px;
+    }
+
+</style>
+<body>
+    <div class="about">
+    <h2 style="font-size: 80px;">About Me:</h2>
+    <a style="font-size: 40px;">
+        I am simply a Touhou fan, Discord and Web developer. And I love working opensource!
+    </a>
+    </div>
+    <div class="sendmessage">
+        <h2>Contact!</h2>
+        Your Name: <br /><input type="text" id="name"><br /><br />
+        Your Message: <br /><input type="text" id="message">
+    </div>
+    <a class="github-button" href="https://github.com/Reviath01">GitHub</a>
+    <a class="gitlab-button" href="https://git.randomchars.net/Reviath">GitLab</a>
+    <script>
+        async function send() {
+    var request = new XMLHttpRequest();
+    request.open("POST", "WEBHOOK_TOKEN");
+    request.setRequestHeader('Content-type', 'application/json');
+    if (document.getElementById("name").value == "") {
+      document.getElementById("name").focus()
+      alert("You should say your name!")
+      return
+  }
+
+if (document.getElementById("message").value == "") {
+  document.getElementById("message").focus()
+  alert("Cannot send an empty message.")
+  return
+}
+    var params = {
+      username: document.getElementById("name").value,
+      avatar_url: "",
+      content: `Reviath.xyz ${document.getElementById("message").value}`
+    }
+    await request.send(JSON.stringify(params))
+    alert("Successful!")
+    document.getElementById("message").value = ""
+    document.getElementById("name").value = ""
+  }
+    </script>
+</body>
+</html>
